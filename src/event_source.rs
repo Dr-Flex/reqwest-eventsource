@@ -241,7 +241,7 @@ impl Stream for EventSource {
                             return Poll::Ready(Some(Ok(Event::Open)));
                         }
                         Err(err) => {
-                            *this.is_closed = true;
+                            this.handle_error(&err);
                             return Poll::Ready(Some(Err(err)));
                         }
                     }
